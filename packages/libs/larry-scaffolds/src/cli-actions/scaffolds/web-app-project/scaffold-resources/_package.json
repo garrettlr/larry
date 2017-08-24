@@ -1,0 +1,54 @@
+{
+	"name": "{{projectName}}",
+	"description": "{{projectDescription}}",
+	"version": "{{projectVersion}}",
+	"publishConfig": {},
+	"bin": {},
+	"files": [
+		"dist",
+		"README.md",
+		"!.DS_Store"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/{{githubProjectUser}}/{{githubProjectName}}"
+	},
+	"license": "MIT",
+	"scripts": {
+		"start": "npm run serve",
+		"test": "echo '=> Verifying...' && npm run clean && npm run lint && npm run test-coverage && npm run build-web && npm run test-cypress",
+		"readiness-check": "echo '=> Checking Readiness' && npm test",
+		"prepublishOnly": "npm test",
+		"clean": "echo '=> Cleaning built assets...' && rm -rf dev-dist dist .nyc_output coverage",
+		"lint": "echo '=> Linting...' && eslint {src,cypress,test}/**/*.js",
+		"lint-fix": "echo '=> Fixing Linting errors...' && eslint {src,cypress,test}/**/*.js --fix",
+		"serve-dev": "echo '=> Running app in Development mode...' && docker-compose -f src/docker/dev/docker-compose.yml up --build",
+		"serve": "echo '=> Running app in Production mode...' && npm run build-artifacts && export WebImageTag=$(node -e 'console.log(`${process.env.npm_package_name}:${process.env.npm_package_version}`.slice(1));') && docker-compose -f src/docker/ci/docker-compose.yml up",
+		"serve-detached": "echo '=> Running app in Production mode (detached)...' && npm run build-docker-ci && export WebImageTag=$(node -e 'console.log(`${process.env.npm_package_name}:${process.env.npm_package_version}`.slice(1));') && docker-compose -f src/docker/ci/docker-compose.yml up -d && wget --retry-connrefused --tries=7 --spider 127.0.0.1:8000/health-check && echo '=> App now running in Production mode!'",
+		"stop-detached": "echo '=> Stopping Production app...' && export WebImageTag=$(node -e 'console.log(`${process.env.npm_package_name}:${process.env.npm_package_version}`.slice(1));') && docker-compose -f src/docker/ci/docker-compose.yml down --rmi all",
+		"build-web": "echo '=> Building webapp...' && parcel build ./src/app/index.html -d dist/web",
+		"build-docker-ci": "docker build -f src/docker/ci/Dockerfile -t $(node -e 'console.log(`${process.env.npm_package_name}:${process.env.npm_package_version}`.slice(1));') .",
+		"build-artifacts": "echo '=> Building all artifacts...' && npm run build-web && npm run build-docker-ci",
+		"test-unit": "echo '=> Running Tests...' && mocha -u tdd --timeout 60000 --colors test/**/*.spec.js",
+		"watch-test": "echo '=> Running Test Watcher...' && mocha --watch test/**/*.spec.js",
+		"test-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 60 --functions 50 --branches 80 --per-file check-coverage",
+		"cypress-open": "echo '=> Opening Cypress workbench...' && cypress open",
+		"test-cypress": "echo '=> Running UI Tests...' && npm run serve-detached && cypress run && npm run stop-detached"
+	},
+	"dependencies": {
+		"lodash": "^4.17.11"
+	},
+	"devDependencies": {
+		"@monstermakes/larry-infrastructure": "^0.0.1",
+		"chai": "^4.1.2",
+		"chai-as-promised": "^7.1.1",
+		"chai-files": "^1.4.0",
+		"cypress": "^3.1.0",
+		"eslint": "^5.13.0",
+		"eslint-plugin-cypress": "^2.0.1",
+		"mocha": "^5.0.0",
+		"nyc": "^13.2.0",
+		"parcel-bundler": "^1.10.0",
+		"sass": "^1.14.0"
+	}
+}

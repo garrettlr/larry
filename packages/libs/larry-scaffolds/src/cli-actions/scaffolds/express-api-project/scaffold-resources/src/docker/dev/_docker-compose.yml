@@ -1,0 +1,12 @@
+version: '3'
+services:
+  {{serverName}}:
+    container_name: dev-{{serverName}}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes: 
+      - ./../../../:/usr/src/app
+    ports:
+      - '{{portNumber}}:8080'
+      - '9229:9229'

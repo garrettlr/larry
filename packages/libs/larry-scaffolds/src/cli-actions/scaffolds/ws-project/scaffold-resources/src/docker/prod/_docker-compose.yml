@@ -1,0 +1,21 @@
+version: '3'
+services:
+  ws:
+    container_name: {{serverName}}
+    image: $WsImageTag
+    ports:
+      - '{{portNumber}}:8080'
+    networks:
+      - network
+    environment:
+      - REDIS_HOST=redis
+  redis:
+    container_name: redis
+    image: 'redis'
+    ports:
+      - '6379:6379'
+    networks:
+      - network
+networks:
+  network:
+      driver: bridge

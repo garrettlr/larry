@@ -1,0 +1,107 @@
+{
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"{{appName}}": {
+			"root": "./",
+			"sourceRoot": "./src",
+			"projectType": "application",
+			"prefix": "{{libraryPrefix}}",
+			"schematics": {
+				"@schematics/angular:class": {},
+				"@schematics/angular:component": {
+					"style": "scss",
+					"spec": false
+				},
+				"@schematics/angular:directive": {
+					"spec": false
+				},
+				"@schematics/angular:module": {},
+				"@schematics/angular:pipe": {
+					"spec": false
+				},
+				"@schematics/angular:service": {
+					"spec": false
+				}
+			},
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/{{appName}}",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": "src/polyfills.ts",
+						"tsConfig": "src/tsconfig.app.json",
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							"src/environment-details.json"
+						],
+						"styles": [
+							"src/styles.scss"
+						],
+						"scripts": [],
+						"es5BrowserSupport": true
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "src/buildMode.ts",
+									"with": "src/buildMode.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "{{appName}}:build"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "{{appName}}:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "{{appName}}:build"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"src/tsconfig.app.json"
+						],
+						"exclude": [
+							"**/node_modules/**"
+						]
+					}
+				}
+			}
+		}
+	},
+	"defaultProject": "{{appName}}"
+}

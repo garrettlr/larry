@@ -1,0 +1,19 @@
+version: '3'
+services:
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    ports:
+      - '8000:80'
+      - '40801:40801'
+    links: # Link services to access http://web and  http://api inside the container
+      - web:web
+    depends_on:
+      - "web"
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes: 
+      - ./../../../:/usr/src/app

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  {{serverName}}:
+    container_name: {{serverName}}
+    image: $ApiImageTag
+    command: ["npx","nyc","node", "./index.js"]
+    volumes: 
+      - ./../../../.nyc_output:/usr/src/app/.nyc_output
+    ports:
+      - '{{portNumber}}:8080'
+    networks:
+      - {{serverName}}-network
+    environment:
+      - API_PORT=8080
+networks:
+  {{serverName}}-network:
+      driver: bridge

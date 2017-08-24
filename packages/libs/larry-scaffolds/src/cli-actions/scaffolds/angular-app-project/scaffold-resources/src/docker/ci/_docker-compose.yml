@@ -1,0 +1,8 @@
+version: '3'
+services:
+  {{appName}}:
+    container_name: {{appName}}
+    image: $WebAppImageTag 
+    ports:
+      - '{{portNumber}}:80'
+      
