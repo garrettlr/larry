@@ -1,0 +1,47 @@
+'use strict';
+const JiraInstanceDetails = {
+	baseUrl: 'https://<change_me>.atlassian.net',
+	projects: {
+		<change_me>: '10000'
+	},
+	issueTypes: {
+		'EPIC': '10000',
+		'FEATURE': '10010',
+		'BUG': '10004',
+		'TASK': '10002',
+		'SUB-TASK': '10003'
+	},
+	tranitionIds: {
+		'BACKLOG': '111',
+		'APPROVED': '11',
+		'DEVELOP': '21',
+		'BLOCKED': '31',
+		'ON-HOLD': '41',
+		'PULL-REQUEST': '51',
+		'CLOSE': '61',
+		'BUILD': '71',
+		'DEPLOY': '81',
+		'TEST': '91',
+		'RELEASE': '101'
+	},
+	statusIds: {
+		'BACKLOG': '10000',
+		'APPROVED': '10020',
+		'DEVELOP': '10021',
+		'BLOCKED': '10022',
+		'ON-HOLD': '10023',
+		'PULL-REQUEST': '10024',
+		'CLOSE': '10029',
+		'BUILD': '10025',
+		'DEPLOY': '10026',
+		'TEST': '10027',
+		'RELEASE': '10028'
+	},
+	getTransitionIdFromString: function (str){
+		let upper = str.toUpperCase();
+		let hyphen = upper.replace(/\s+/gi,'-');
+		return this.tranitionIds[hyphen];
+	}
+};
+Object.freeze(JiraInstanceDetails);
+module.exports=JiraInstanceDetails;
