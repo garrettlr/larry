@@ -14,7 +14,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/@lockenj/larry"
+		"url": "https://github.com/monstermakes/larry"
 	},
 	"license": "MIT",
 	"scripts": {
