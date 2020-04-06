@@ -3,9 +3,12 @@
     "packages/libs/*"
   ],
   "version": "independent",
+  
   "command": {
-    "publish": {
-      "conventionalCommits": true
+    "version": {
+      "allowBranch": ["master"],
+      "conventionalCommits": true,
+      "message": "ci(release): %s"
     }
   }
 }

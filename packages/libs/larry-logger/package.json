@@ -1,6 +1,6 @@
 {
 	"name": "@monstermakes/larry-logger",
-	"description": "This is Larry&#x27;s logger.",
+	"description": "This is Larry's logger.",
 	"version": "0.0.4",
 	"publishConfig": {},
 	"bin": {},
