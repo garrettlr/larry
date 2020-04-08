@@ -13,4 +13,3 @@ buildspec.yml
 coverage
 test
 npm-debug.log
-package-lock.json

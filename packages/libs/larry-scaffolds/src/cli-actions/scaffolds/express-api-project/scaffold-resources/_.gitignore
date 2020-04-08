@@ -10,5 +10,4 @@ cypress/videos
 coverage
 dist/
 npm-debug.log
-package-lock.json
 !.vscode/launch-template.json

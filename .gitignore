@@ -10,6 +10,5 @@ cypress/videos
 coverage
 dist/
 npm-debug.log
-package-lock.json
 !*/launch-template.json
 lerna-debug.log
