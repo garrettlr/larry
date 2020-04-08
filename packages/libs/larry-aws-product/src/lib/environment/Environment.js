@@ -30,9 +30,9 @@ class Environment{
 	/**
 	 * Convert AWS cloud formation params into an array of inquirer (https://www.npmjs.com/package/inquirer) prompts.
 	 */
-	_convertParametersToPrompts(cloudFormationParams){
+	_convertParametersToPrompts(cloudFormationParams){//eslint-disable-line
 		let prompts = [];
-		this._cloudFormationParams.forEach((param)=>{
+		cloudFormationParams.forEach((param)=>{
 			let type = 'String';
 			let dflt = param.DefaultValue;
 			let description = param.Description;
@@ -83,17 +83,17 @@ class Environment{
 			//For example, users could specify "80,20", and a Ref would result in ["80","20"].
 			case 'List<Number>': 
 				throw new Error(`ParameterType (${param.ParameterType}) not yet supported!`);
-				break;
+				break;//eslint-disable-line
 			//An array of literal strings that are separated by commas. The total number of strings should be one more than the total number of commas. Also, each member string is space trimmed.
 			//For example, users could specify "test,dev,prod", and a Ref would result in ["test","dev","prod"].
 			case 'CommaDelimitedList':
 				throw new Error(`ParameterType (${param.ParameterType}) not yet supported!`);
-				break;
+				break;//eslint-disable-line
 			default:
 				// The Last supported type that could end up here are AWS-Specific Parameter Types, values such as Amazon EC2 key pair names and VPC IDs. 
 				//For more information, see AWS-Specific Parameter Types (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html#aws-specific-parameter-types).
 				throw new Error(`ParameterType (${param.ParameterType}) not yet supported!`);
-				break;
+				break;//eslint-disable-line
 			}
 			
 			let message = `Please enter a ${type} for ${name}` + ' => ';
@@ -316,32 +316,32 @@ class Environment{
 	/*********************************************************/
 
 
-//TODO SHOULD THESE BE DELETED
-XXXconvertDirectoryOfCloudFormationTemplatesParametersIntoPrompts(cfDirectory,cfTemplatePattern='**/*.@(yml|yaml)',ignoreParams=[]){
-	return this.loadParamsFromCloudFormationDirectory(cfDirectory,true,cfTemplatePattern)
-		.then((params)=>{
-			return this.convertParametersToPrompts(params,true);
-		})
+	//TODO SHOULD THESE BE DELETED
+	XXXconvertDirectoryOfCloudFormationTemplatesParametersIntoPrompts(cfDirectory,cfTemplatePattern='**/*.@(yml|yaml)',ignoreParams=[]){
+		return this.loadParamsFromCloudFormationDirectory(cfDirectory,true,cfTemplatePattern)
+			.then((params)=>{
+				return this.convertParametersToPrompts(params,true);
+			})
 		//remove any prompts that should be ignored
-		.then((prompts)=>{
-			ignoreParams.forEach((paramNameToIgnore)=>{
-				prompts = prompts.filter((prompt)=>{
-					return prompt.name !== paramNameToIgnore;
+			.then((prompts)=>{
+				ignoreParams.forEach((paramNameToIgnore)=>{
+					prompts = prompts.filter((prompt)=>{
+						return prompt.name !== paramNameToIgnore;
+					});
 				});
+				return prompts;
 			});
-			return prompts;
-		});
-}
+	}
 
-XXX_getNamespacedParamNameFromPrompt(prompt){
+	XXX_getNamespacedParamNameFromPrompt(prompt){
 	//Note: these _meta properties on exist on prompts loaded using _cloudFormation.convertParametersToPrompts() with includeParams being true.
-	let param = _.get(prompt,'_meta._param');
-	return this._getNamespacedParamNameFromCloudformationParameter(param);
-}
-XXX_getNamespacedParamNameFromCloudformationParameter(param){
-	let basePath = _.get(param,'_meta._retrievedFrom','/');
-	let paramName = pathUtils.join('/environments',this._environmentName,pathUtils.dirname(basePath),param.ParameterKey);
-	return paramName;
-}
+		let param = _.get(prompt,'_meta._param');
+		return this._getNamespacedParamNameFromCloudformationParameter(param);
+	}
+	XXX_getNamespacedParamNameFromCloudformationParameter(param){
+		let basePath = _.get(param,'_meta._retrievedFrom','/');
+		let paramName = pathUtils.join('/environments',this._environmentName,pathUtils.dirname(basePath),param.ParameterKey);
+		return paramName;
+	}
 }
 module.exports=Environment;

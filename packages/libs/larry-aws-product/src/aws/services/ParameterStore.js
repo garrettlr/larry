@@ -19,7 +19,7 @@ class ParameterStore extends AwsParameterStore {
 		}
 		return awsTags;
 	}
-	_getAwsParamFromDefinition(paramDef,opts={overwrite:true,tags:undefined}){
+	_getAwsParamFromDefinition(paramDef,opts={overwrite:true,tags:undefined}){ //eslint-disable-line
 		let awsParam = {};
 		
 		return awsParam;

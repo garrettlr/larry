@@ -1,5 +1,5 @@
 'use strict';
-const _ = require('lodash');
+const _ = require('lodash');//eslint-disable-line
 const chai = require('chai');
 const should = chai.should();//eslint-disable-line
 const expect = chai.expect;//eslint-disable-line

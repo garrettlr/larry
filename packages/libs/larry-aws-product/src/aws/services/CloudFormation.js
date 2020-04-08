@@ -77,7 +77,7 @@ class CloudFormation extends AwsCloudFormation {
 		return BackoffUtils.exponentialBackoff(
 			//backoff function
 			(opts)=>{
-				console.info(`Attempting to retrieve stack (${stackIdOrName}) status after delaying, (HH:MM:SS.mmm) ${BackoffUtils.msToTime(opts.delayAmounts[opts.currentIndex])}`);
+				console.info(`Attempting to retrieve stack (${stackIdOrName}) status after delaying, (HH:MM:SS.mmm) ${BackoffUtils.msToTime(opts.delayAmounts[opts.currentIndex])}`); //eslint-disable-line
 				return this.retrieveStackStatus(stackIdOrName)
 					.then((status)=>{
 						/* eslint-disable no-fallthrough */

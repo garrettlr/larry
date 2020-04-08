@@ -14,7 +14,7 @@ const AWS_PROFILE_PROMPT = {
 	validate: (input)=>{
 		let result = true;
 		if(!input){
-			result = `Invalid format, a value must be supplied.`;
+			result = 'Invalid format, a value must be supplied.';
 		}
 		return result;
 	},
