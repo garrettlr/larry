@@ -33,7 +33,7 @@
 	},
 	"dependencies": {
 		"@monstermakes/larry-cli": "*",
-		"@monstermakes/larry-scaffolds": "^1.6.1",
+		"@monstermakes/larry-scaffolds": "*",
 		"@slack/client": "^4.8.0",
 		"axios": "^0.18.0",
 		"fs-extra": "^7.0.1",

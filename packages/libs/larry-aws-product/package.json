@@ -38,7 +38,7 @@
 		"node-glob": "^1.2.0"
 	},
 	"devDependencies": {
-		"@monstermakes/larry-infrastructure": "^0.2.1",
+		"@monstermakes/larry-infrastructure": "*",
 		"chai": "^4.2.0",
 		"chai-as-promised": "^7.1.1",
 		"chai-files": "^1.4.0",
