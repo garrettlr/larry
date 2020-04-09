@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-scaffolds",
 	"description": "This node module is a plugin based framework for scaffolding and/or generating Larry code.",
-	"version": "1.5.4",
+	"version": "1.6.0",
 	"publishConfig": {},
 	"bin": {
 		"larry-scaffolds": "./bin/larry-scaffolds.js"
@@ -28,7 +28,7 @@
 		"prepublishOnly": "npm run readiness-check"
 	},
 	"dependencies": {
-		"@monstermakes/larry-cli": "^0.1.2",
+		"@monstermakes/larry-cli": "^0.2.0",
 		"@monstermakes/larry-logger": "^0.0.2",
 		"fs-extra": "^4.0.2",
 		"glob": "^7.1.3",
