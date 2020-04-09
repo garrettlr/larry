@@ -8,7 +8,7 @@
     "version": {
       "allowBranch": ["master"],
       "conventionalCommits": true,
-      "message": "ci(release): %s"
+      "message": "ci(release): releasing artifacts"
     }
   }
 }
