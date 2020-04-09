@@ -32,8 +32,8 @@
 		"test-unit-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 60 --functions 62 --branches 33 --per-file check-coverage"
 	},
 	"dependencies": {
-		"@monstermakes/larry-cli": "^0.2.0",
-		"@monstermakes/larry-scaffolds": "^1.6.0",
+		"@monstermakes/larry-cli": "*",
+		"@monstermakes/larry-scaffolds": "*",
 		"@slack/client": "^4.8.0",
 		"axios": "^0.18.0",
 		"fs-extra": "^7.0.1",

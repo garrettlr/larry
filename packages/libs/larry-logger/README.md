@@ -5,7 +5,7 @@
 
 
 ## Description
-***Update This*** Add the intent of your package here...
+A place to centralize logging for larry and all his parts.
 
 
 ## TODO
