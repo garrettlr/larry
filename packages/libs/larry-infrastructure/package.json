@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-infrastructure",
 	"description": "Larry infrastructure tools, utilities, and other helper functions.",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"publishConfig": {},
 	"bin": {
 		"larry": "./bin/larry-infrastructure.js"
@@ -33,7 +33,7 @@
 	},
 	"dependencies": {
 		"@monstermakes/larry-cli": "*",
-		"@monstermakes/larry-scaffolds": "*",
+		"@monstermakes/larry-scaffolds": "^1.6.1",
 		"@slack/client": "^4.8.0",
 		"axios": "^0.18.0",
 		"fs-extra": "^7.0.1",
