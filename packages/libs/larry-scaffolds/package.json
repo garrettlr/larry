@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-scaffolds",
 	"description": "This node module is a plugin based framework for scaffolding and/or generating Larry code.",
-	"version": "1.6.1",
+	"version": "1.6.2",
 	"publishConfig": {},
 	"bin": {
 		"larry-scaffolds": "./bin/larry-scaffolds.js"
