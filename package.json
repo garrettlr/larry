@@ -15,7 +15,7 @@
 	"license": "MIT",
 	"scripts": {
 		"setup-project": "rm -rf node_modules && npx lerna bootstrap --ci --hoist",
-		"release": "npx lerna changed --json && npx lerna version --no-push && npx lerna publish from-git && git push --follow-tags"
+		"release": "npx lerna changed --json && npx lerna version --no-push && npm login && npx lerna publish from-git && git push --follow-tags"
 	},
 	"dependencies": {},
 	"devDependencies": {
