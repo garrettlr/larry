@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/monstermakes/larry-logger/compare/@monstermakes/larry-logger@0.0.6...@monstermakes/larry-logger@0.1.0) (2020-04-14)
+
+
+### Features
+
+* **larry-infrastructure:** add nodeBuild cli with pre-release support ([ecd0c23](https://github.com/monstermakes/larry-logger/commit/ecd0c23a6a56e1592cc421c2457f420e351848c5))
+
+
+
+
+
 ## [0.0.6](https://github.com/monstermakes/larry-logger/compare/@monstermakes/larry-logger@0.0.5...@monstermakes/larry-logger@0.0.6) (2020-04-09)
 
 **Note:** Version bump only for package @monstermakes/larry-logger

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.3.2...@monstermakes/larry-aws-product@0.4.0) (2020-04-14)
+
+
+### Features
+
+* **larry-infrastructure:** add nodeBuild cli with pre-release support ([ecd0c23](https://github.com/@lockenj/larry-aws-product/commit/ecd0c23a6a56e1592cc421c2457f420e351848c5))
+
+
+
+
+
 ## [0.3.2](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.3.1...@monstermakes/larry-aws-product@0.3.2) (2020-04-09)
 
 **Note:** Version bump only for package @monstermakes/larry-aws-product
