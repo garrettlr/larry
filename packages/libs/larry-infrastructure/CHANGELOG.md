@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/monstermakes/larry-infrastructure/compare/@monstermakes/larry-infrastructure@0.2.2...@monstermakes/larry-infrastructure@0.3.0) (2020-04-14)
+
+
+### Features
+
+* **larry-infrastructure:** add nodeBuild cli with pre-release support ([ecd0c23](https://github.com/monstermakes/larry-infrastructure/commit/ecd0c23a6a56e1592cc421c2457f420e351848c5))
+
+
+### Reverts
+
+* Revert "ci(release): releasing artifacts" ([e51a667](https://github.com/monstermakes/larry-infrastructure/commit/e51a667fc8bc57afd1338725472da486025f4edd))
+
+
+
+
+
 ## [0.2.2](https://github.com/monstermakes/larry-infrastructure/compare/@monstermakes/larry-infrastructure@0.2.1...@monstermakes/larry-infrastructure@0.2.2) (2020-04-09)
 
 **Note:** Version bump only for package @monstermakes/larry-infrastructure
