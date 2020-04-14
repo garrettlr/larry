@@ -1,8 +1,8 @@
 {
 	"name": "larry",
 	"description": "Monorepo of all things Larry.",
-	"version": "0.0.2",
-	"private": false,
+	"version": "0.0.0",
+	"private": true,
 	"publishConfig": {},
 	"bin": {},
 	"files": [
@@ -13,7 +13,10 @@
 		"url": "https://github.com/monstermakes/larry"
 	},
 	"license": "MIT",
-	"scripts": {},
+	"scripts": {
+		"setup-project": "rm -rf node_modules && npx lerna bootstrap --ci --hoist",
+		"release": "npx lerna changed --json && npx lerna version --no-push && npx lerna publish from-git && git push --follow-tags"
+	},
 	"dependencies": {},
 	"devDependencies": {
 		"lerna": "^3.20.2"

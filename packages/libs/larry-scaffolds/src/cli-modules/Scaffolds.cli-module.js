@@ -7,7 +7,6 @@ class ScaffoldsCliModule extends CliModule {
 		this._init();
 	}
 	_init(){
-		this.$prompt = this._vorpalInstance.chalk.blue('larry-scaffolds>');
 		for (const [actionName, actionClass] of Object.entries(LarryScaffoldsIndex.cliActions.scaffolds)) { //eslint-disable-line
 			this._vorpalInstance.use((vi) => {
 				let inst = new actionClass(vi); // eslint-disable-line
@@ -16,4 +15,5 @@ class ScaffoldsCliModule extends CliModule {
 	}
 }
 module.exports=ScaffoldsCliModule;
+module.exports.$prompt='larry-scaffolds>';
 const LarryScaffoldsIndex = require('../../index');

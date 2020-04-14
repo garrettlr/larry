@@ -15,9 +15,6 @@ class VulgarCli extends CliAction {
 		this._init();
 	}
 	_init(){
-		//setup midnight prompt
-		this.$prompt = this._vorpalInstance.chalk.blue('8====>');
-
 		//expose ripper
 		this._vorpalInstance
 			.command('pbbbt [mp3]', 'Who farted?')

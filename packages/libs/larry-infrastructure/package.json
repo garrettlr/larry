@@ -1,54 +1,53 @@
 {
-	"name": "@monstermakes/larry-infrastructure",
-	"description": "Larry infrastructure tools, utilities, and other helper functions.",
-	"version": "0.2.2",
-	"publishConfig": {},
-	"bin": {
-		"larry": "./bin/larry-infrastructure.js"
-	},
-	"files": [
-		"bin",
-		"src",
-		"CHANGELOG.md",
-		"index.js",
-		"README.md",
-		"!.DS_Store"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/monstermakes/larry-infrastructure"
-	},
-	"license": "MIT",
-	"scripts": {
-		"start": "echo '=> This is a library project and therefore has no server component. Exiting...' && exit 0",
-		"test": "echo '=> Verifying...' && npm run clean && npm run lint && npm run test-unit-coverage",
-		"readiness-check": "echo '=> Checking Readiness' && npm test",
-		"prepublishOnly": "npm test",
-		"clean": "echo '=> Cleaning built assets...' && rm -rf .nyc_output coverage",
-		"lint": "echo '=> Linting...' && eslint {src,test}/**/*.js",
-		"lint-fix": "echo '=> Fixing Linting errors...' && eslint {src,test}/**/*.js --fix",
-		"test-unit": "echo '=> Running Tests...' && mocha -u tdd --timeout 60000 --colors test/unit/**/*.spec.js",
-		"watch-test-unit": "echo '=> Running Test Watcher...' && mocha --watch test/unit/**/*.spec.js",
-		"test-unit-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 60 --functions 62 --branches 33 --per-file check-coverage"
-	},
-	"dependencies": {
-		"@monstermakes/larry-cli": "*",
-		"@monstermakes/larry-scaffolds": "^1.6.2",
-		"@slack/client": "^4.8.0",
-		"axios": "^0.18.0",
-		"fs-extra": "^7.0.1",
-		"lodash": "^4.17.4",
-		"npm-safe-name": "^1.1.0",
-		"semver": "^5.6.0",
-		"vorpal": "^1.11.4"
-	},
-	"devDependencies": {
-		"@monstermakes/larry-executioner": "*",
-		"chai": "^4.2.0",
-		"chai-as-promised": "^7.1.1",
-		"chai-files": "^1.4.0",
-		"eslint": "^4.17.0",
-		"mocha": "^5.2.0",
-		"nyc": "^11.4.1"
-	}
+    "name": "@monstermakes/larry-infrastructure",
+    "description": "Larry infrastructure tools, utilities, and other helper functions.",
+    "version": "0.2.2",
+    "bin": {
+        "larry-infrastructure": "./bin/larry-infrastructure.js"
+    },
+    "files": [
+        "bin",
+        "src",
+        "CHANGELOG.md",
+        "index.js",
+        "README.md",
+        "!.DS_Store"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/monstermakes/larry-infrastructure"
+    },
+    "license": "MIT",
+    "scripts": {
+        "start": "echo '=> This is a library project and therefore has no server component. Exiting...' && exit 0",
+        "test": "echo '=> Verifying...' && npm run clean && npm run lint && npm run test-unit-coverage",
+        "readiness-check": "echo '=> Checking Readiness' && npm test",
+        "prepublishOnly": "npm test",
+        "clean": "echo '=> Cleaning built assets...' && rm -rf .nyc_output coverage",
+        "lint": "echo '=> Linting...' && eslint {src,test}/**/*.js",
+        "lint-fix": "echo '=> Fixing Linting errors...' && eslint {src,test}/**/*.js --fix",
+        "test-unit": "echo '=> Running Tests...' && mocha -u tdd --timeout 60000 --colors test/unit/**/*.spec.js",
+        "watch-test-unit": "echo '=> Running Test Watcher...' && mocha --watch test/unit/**/*.spec.js",
+        "test-unit-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 60 --functions 62 --branches 33 --per-file check-coverage"
+    },
+    "dependencies": {
+        "@monstermakes/larry-cli": "*",
+        "@monstermakes/larry-scaffolds": "^1.6.2",
+        "@slack/client": "^4.8.0",
+        "axios": "^0.18.0",
+        "fs-extra": "^7.0.1",
+        "lodash": "^4.17.4",
+        "npm-safe-name": "^1.1.0",
+        "semver": "^7.3.2",
+        "vorpal": "^1.11.4"
+    },
+    "devDependencies": {
+        "@monstermakes/larry-executioner": "*",
+        "chai": "^4.2.0",
+        "chai-as-promised": "^7.1.1",
+        "chai-files": "^1.4.0",
+        "eslint": "^4.17.0",
+        "mocha": "^5.2.0",
+        "nyc": "^11.4.1"
+    }
 }

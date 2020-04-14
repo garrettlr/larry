@@ -16,12 +16,23 @@ function commonActions(vorpalInstance,rootVorpalInstance) {//eslint-disable-line
 			//if the user didnt pick a sub cli
 			if (!command.subCli) {
 				vorpalInstance.log(vorpalInstance.chalk.green('ctrl-c to cancel this action.'));
+				const choices = [];
+				Object.keys(self._subModulesRegistry).forEach(cliModuleName=>{
+					let choice = {
+						name: self._getSubmodulePrompt(cliModuleName),
+						value: cliModuleName
+					};
+					if(choice.name.endsWith('>')){
+						choice.name = choice.name.slice(0,-1);
+					}
+					choices.push(choice);
+				});
 				prom = this.prompt([
 					{
 						type: 'list',
 						name: 'subCli',
 						message: 'Here are the availble sub clis:',
-						choices: Object.keys(self._subModulesRegistry)
+						choices: choices
 					}
 				]).then((answers) => {
 					return answers.subCli;
@@ -117,11 +128,19 @@ class LarryCli{
 			process.exit(-1);
 		});
 	}
+	_getSubmodulePrompt(cliName){
+		const cliModuleClass = this._cliModuleRegistry[cliName];
+		let prompt = cliModuleClass.$prompt || `${cliName}>`;
+		return prompt;
+	}
 	_loadSubModules(){
 		this._subModulesRegistry={};
 		Object.keys(this._cliModuleRegistry).forEach(cliName => {
-			let cliModuleClass = this._cliModuleRegistry[cliName];
-			let cliVorpalInstance = new Vorpal();
+			const cliModuleClass = this._cliModuleRegistry[cliName];
+			const cliVorpalInstance = new Vorpal();
+
+			this._subModulesRegistry[cliName] = cliVorpalInstance;
+
 			//load the common stuff
 			cliVorpalInstance.use((vi)=>{
 				return commonActions(vi,this._vorpalInstance);
@@ -133,13 +152,11 @@ class LarryCli{
 			cliVorpalInstance.use((vi) => {
 				//kicking off the constructor is all that is needed to instantiate all the commands
 				//we may want to add a lifecycle in the future...
-				let cliModuleInst = new cliModuleClass(vi);
+				const cliModuleInst = new cliModuleClass(vi); //eslint-disable-line
 				
-				let prompt = cliModuleInst.$prompt || cliModuleClass.$prompt || this._vorpalInstance.chalk.blue(`${cliName}>`);
-				cliVorpalInstance.delimiter(prompt);
+				const prompt = this._getSubmodulePrompt(cliName);
+				cliVorpalInstance.delimiter(this._vorpalInstance.chalk.blue(prompt));
 			});
-		
-			this._subModulesRegistry[cliName] = cliVorpalInstance;
 		});
 	}
 	/****************************************************************/

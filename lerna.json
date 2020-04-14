@@ -1,6 +1,9 @@
 {
   "packages": [
-    "packages/libs/*"
+    "packages/libs/*",
+    "packages/web/*",
+    "packages/mobile/*",
+    "packages/services/*"
   ],
   "version": "independent",
   

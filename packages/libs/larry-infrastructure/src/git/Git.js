@@ -58,5 +58,19 @@ class Git {
 				return issuesToBeMoved;
 			});
 	}
+	createBranch(branchName,checkOutBranch=false){
+		return this._cmdUtils.spawnCmd('git',['branch',branchName])	
+			.then(() => {
+				if(checkOutBranch){
+					return this._cmdUtils.spawnCmd('git',['checkout',branchName]);
+				}
+			});
+	}
+	getCurrentBranch() {
+		return this._cmdUtils.spawnCmd('git',['rev-parse','--abbrev-ref','HEAD'])	
+			.then((branchName) => {
+				return branchName.trim();
+			});
+	}
 }
 module.exports = Git;

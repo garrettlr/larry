@@ -20,11 +20,11 @@ describe(TEST_NAME, () => {
 		let git = new Git(testDir);
 		return git.init()
 			.then(()=>{
-				return git.configEmailAndName('fake@coceaninc.com',TEST_NAME);
+				return git.configEmailAndName('fake@domain.com',TEST_NAME);
 			})
 			.then(()=>{
 				fs.mkdirsSync(testDir);
-				fs.writeJsonSync(pathUtils.join(testDir,'package.json'),'{"name":"foo","version":"0.0.1"}');
+				fs.writeJsonSync(pathUtils.join(testDir,'package.json'),{name:'foo',version:'0.0.1'});
 				return git.commitAll(`Version x.x.x - Subject line use the imperative mood, (e.g., Add the thing with some other cool stuff.) (Max 50 char)
  
 #Summarize changes in around 50 characters or less
@@ -68,11 +68,11 @@ describe(TEST_NAME, () => {
 		let git = new Git(testDir);
 		return git.init()
 			.then(()=>{
-				return git.configEmailAndName('fake@coceaninc.com',TEST_NAME);
+				return git.configEmailAndName('fake@domain.com',TEST_NAME);
 			})
 			.then(()=>{
 				fs.mkdirsSync(testDir);
-				fs.writeJsonSync(pathUtils.join(testDir,'package.json'),'{"name":"foo","version":"0.0.1"}');
+				fs.writeJsonSync(pathUtils.join(testDir,'package.json'),{name:'foo',version:'0.0.1'});
 				return git.commitAll(`Version 1.0.5 - fix typo in buildspec
  
 Build spec had a space in the commands to send slack msg and update jira, should be good to go now.`);
@@ -83,6 +83,32 @@ Build spec had a space in the commands to send slack msg and update jira, should
 			.then((keys)=>{
 				expect(keys).to.exist;
 				keys.should.eql([]);
+			});
+	});
+	it('should handle basic branching', () => {
+		let testDir = testUtils.getUniqueTestDirPath();
+		let git = new Git(testDir);
+		return git.init()
+			.then(()=>{
+				return git.configEmailAndName('fake@domain.com',TEST_NAME);
+			})
+			.then(()=>{
+				fs.mkdirsSync(testDir);
+				fs.writeJsonSync(pathUtils.join(testDir,'package.json'),'{"name":"foo","version":"0.0.1"}');
+				return git.commitAll('fix: do the things');
+			})
+			.then(()=>{
+				return git.getCurrentBranch();
+			})
+			.then((branchName)=>{
+				branchName.should.eql('master');
+				return git.createBranch('fooBranch',true);
+			})
+			.then(()=>{
+				return git.getCurrentBranch();
+			})
+			.then((branchName)=>{
+				branchName.should.eql('fooBranch');
 			});
 	});
 });
