@@ -12,16 +12,7 @@ class AwsCloudFormation {
 	 * @param {String} params.TemplateURL - Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket. For more information, go to Template Anatomy in the AWS CloudFormation User Guide.
 	 */
 	validateTemplate(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.validateTemplate(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.validateTemplate(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudFormation.html#getTemplateSummary-property.
@@ -32,16 +23,7 @@ class AwsCloudFormation {
 	 * @param {String} params.StackSetName — The name or unique ID of the stack set from which the stack was created.
 	 */
 	getTemplateSummary(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.getTemplateSummary(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.getTemplateSummary(params).promise();
 	}
 	/**
 	 * @typedef CfTag
@@ -66,16 +48,7 @@ class AwsCloudFormation {
 	 * @param {Array.<CfTag>} Tags - Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.
 	 */
 	createStack(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.createStack(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.createStack(params).promise();
 	}
 	/**
 	 * @typedef CfTag
@@ -100,16 +73,7 @@ class AwsCloudFormation {
 	 * @param {Array.<CfTag>} Tags - Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.
 	 */
 	updateStack(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.updateStack(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.updateStack(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudFormation.html#describeStacks-property.
@@ -120,16 +84,7 @@ class AwsCloudFormation {
 	 * @param {String} params.NextToken - A string that identifies the next page of stacks that you want to retrieve.
 	 */
 	describeStacks(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.describeStacks(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.describeStacks(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudFormation.html#deleteStack-property.
@@ -138,16 +93,7 @@ class AwsCloudFormation {
 	 * @param {String} params.RetainResources - For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, AWS CloudFormation deletes the stack but does not delete the retained resources. Retaining resources is useful when you cannot delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.
 	 */
 	deleteStack(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsCloudFormationSdk.deleteStack(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsCloudFormationSdk.deleteStack(params).promise();
 	}
 }
 module.exports = AwsCloudFormation;
