@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.4.0...@monstermakes/larry-aws-product@0.4.1) (2020-06-19)
+
+
+### Bug Fixes
+
+* **aws-product:** Refactoring raw aws libs to use included promises ([de881df](https://github.com/@lockenj/larry-aws-product/commit/de881dfc60d0938fc0acd489a1d033a114f8583a))
+* **cli,aws:** Merge remote-tracking branch 'origin/PromiseEnhancements' ([d70056e](https://github.com/@lockenj/larry-aws-product/commit/d70056ec1fc254a28c28361bfa9b9efb631c64bb))
+
+
+
+
+
 # [0.4.0](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.3.2...@monstermakes/larry-aws-product@0.4.0) (2020-04-14)
 
 

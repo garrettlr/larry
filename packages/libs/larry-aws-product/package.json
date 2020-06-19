@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-aws-product",
 	"description": "Larry Cli Module to expose an aws cloud formation template as a cli.",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"publishConfig": {},
 	"bin": {
 		"larry-aws-product-cli": "./bin/larry-aws-product.cli"
@@ -32,13 +32,13 @@
 		"test-unit-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 0 --functions 0 --branches 0 --per-file check-coverage"
 	},
 	"dependencies": {
-		"@monstermakes/larry-cli": "^0.3.0",
+		"@monstermakes/larry-cli": "^0.3.1",
 		"aws-sdk": "^2.642.0",
 		"lodash": "^4.17.11",
 		"node-glob": "^1.2.0"
 	},
 	"devDependencies": {
-		"@monstermakes/larry-infrastructure": "^0.3.0",
+		"@monstermakes/larry-infrastructure": "^0.3.1",
 		"chai": "^4.2.0",
 		"chai-as-promised": "^7.1.1",
 		"chai-files": "^1.4.0",

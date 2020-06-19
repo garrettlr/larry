@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/MonsterMakes/larry-cli/compare/@monstermakes/larry-cli@0.3.0...@monstermakes/larry-cli@0.3.1) (2020-06-19)
+
+
+### Bug Fixes
+
+* **aws-product:** Refactoring raw aws libs to use included promises ([de881df](https://github.com/MonsterMakes/larry-cli/commit/de881dfc60d0938fc0acd489a1d033a114f8583a))
+
+
+
+
+
 # [0.3.0](https://github.com/MonsterMakes/larry-cli/compare/@monstermakes/larry-cli@0.2.0...@monstermakes/larry-cli@0.3.0) (2020-04-14)
 
 
