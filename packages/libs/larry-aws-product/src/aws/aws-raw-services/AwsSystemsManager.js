@@ -16,16 +16,7 @@ class AwsSystemsManager {
 	 * @param {Array.<{Key: String, Value: String}>} Tags - Tags enable you to categorize a resource in different ways, using name/value pairs
 	 */
 	putParameter(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.putParameter(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.putParameter(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#deleteParameter-property
@@ -33,16 +24,7 @@ class AwsSystemsManager {
 	 * @param {String} params.Name - The name of the parameter to be deleted
 	 */
 	deleteParameter(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.deleteParameter(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.deleteParameter(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#deleteParameters-property
@@ -50,16 +32,7 @@ class AwsSystemsManager {
 	 * @param {Array.<String>} params.Name - The name of the parameter to retrieve
 	 */
 	deleteParameters(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.deleteParameters(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.deleteParameters(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#deleteParameters-property
@@ -67,16 +40,7 @@ class AwsSystemsManager {
 	 * @param {Array.<String>} params.Name - The names of parameter to retrieve
 	 */
 	getParameter(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.getParameter(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.getParameter(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#deleteParameters-property
@@ -84,16 +48,7 @@ class AwsSystemsManager {
 	 * @param {Array.<String>} params.Names - An array of the names of parameters to be deleted
 	 */
 	getParameters(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.getParameters(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.getParameters(params).promise();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#getParametersByPath-property
@@ -102,16 +57,7 @@ class AwsSystemsManager {
 	 * @param {String} params.NextToken - A token to start the list. Use this token to get the next set of results.
 	 */
 	getParametersByPath(params={}){
-		return new Promise((resolve, reject) => {
-			this._awsSystemsManagerSdk.getParametersByPath(params, (err, data) => {
-				if (err) {
-					reject(err);
-				}
-				else {
-					resolve(data);
-				}
-			});
-		});
+		return this._awsSystemsManagerSdk.getParametersByPath(params).promise();
 	}
 }
 module.exports = AwsSystemsManager;
