@@ -1,5 +1,5 @@
 'use strict';
 
-const awsConfigSingleton = require('../../index').AwsConfigSingleton;
+const awsConfigSingleton = require('./AwsConfigSingleton');
 
-module.exports= awsConfigSingleton.getAwsSdk();
+module.exports = awsConfigSingleton.getAwsSdk();

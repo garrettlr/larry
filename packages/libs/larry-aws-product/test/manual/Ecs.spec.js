@@ -6,6 +6,7 @@ const should = chai.should();//eslint-disable-line
 const expect = chai.expect;//eslint-disable-line
 
 const TEST_NAME = 'Test ECS Service';
+const AwsConfig = require('../../src/aws/AwsConfigSingleton');
 const Ecs = require('../../src/aws/services/Ecs');
 
 
@@ -28,7 +29,7 @@ describe(TEST_NAME, () => {
 	before(() => {
 		console.log('-------------------------------------------------------');//eslint-disable-line
 		console.log('TESTS RUNNING USING:');//eslint-disable-line
-		console.log(JSON.stringify(ecs.getLoadedConfig()));//eslint-disable-line
+		console.log(AwsConfig.printConnectionDetails());//eslint-disable-line
 		console.log('-------------------------------------------------------');//eslint-disable-line
 	});
 	it('should retrieve running service', ()=>{

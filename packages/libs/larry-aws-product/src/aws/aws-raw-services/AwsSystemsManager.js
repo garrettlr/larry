@@ -2,8 +2,10 @@
 
 class AwsSystemsManager {
 	constructor() {
-		const awsSdk = require('../AwsSdk');
-		this._awsSystemsManagerSdk = new awsSdk.SSM();
+	}
+	get _awsSystemsManagerSdk(){
+		const awsSdk = require('../awsSdk');
+		return new awsSdk.SSM();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#putParameter-property

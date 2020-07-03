@@ -2,8 +2,10 @@
 
 class AwsEcs {
 	constructor() {
-		const awsSdk = require('../AwsSdk');
-		this._awsEcsSdk = new awsSdk.ECS();
+	}
+	get _awsEcsSdk(){
+		const awsSdk = require('../awsSdk');
+		return new awsSdk.ECS();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/ECS.html#registerTaskDefinition-property.

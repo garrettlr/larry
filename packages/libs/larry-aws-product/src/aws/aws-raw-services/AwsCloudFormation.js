@@ -2,8 +2,10 @@
 
 class AwsCloudFormation {
 	constructor() {
-		const awsSdk = require('../AwsSdk');
-		this._awsCloudFormationSdk = new awsSdk.CloudFormation();
+	}
+	get _awsCloudFormationSdk(){
+		const awsSdk = require('../awsSdk');
+		return new awsSdk.CloudFormation();
 	}
 	/**
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudFormation.html#validateTemplate-property.

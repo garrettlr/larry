@@ -12,7 +12,7 @@ const InquirerPromptAssertions = require('../../util/InquirerPromptAssertions');
 describe(TEST_NAME, () => {
 	it('should load prompts from the parameters from a valid template file', () => {
 		let env = new Environment(TEST_NAME,CLOUD_FORMATION_DIR,{cloudFormationTemplatePattern:'vpc.yml'});
-		return env.getEnvironmentParametersAsPrompts()
+		return env.loadEnvironmentParametersAsPrompts()
 			.then((prompts) => {
 				prompts.should.exist;
 				prompts.length.should.be.eql(4);
@@ -36,7 +36,7 @@ describe(TEST_NAME, () => {
 	});
 	it('should load all the parameter types as prompts', () => {
 		let env = new Environment(TEST_NAME,CLOUD_FORMATION_DIR,{cloudFormationTemplatePattern:'all-the-types.yml'});
-		return env.getEnvironmentParametersAsPrompts()
+		return env.loadEnvironmentParametersAsPrompts()
 			.then((prompts) => {
 				prompts.should.exist;
 				prompts.length.should.be.eql(7);
@@ -53,7 +53,7 @@ describe(TEST_NAME, () => {
 	});
 	it('should load all ssm parameter types via directory', () => {
 		let env = new Environment(TEST_NAME,CLOUD_FORMATION_DIR,{cloudFormationTemplatePattern:'vpc_ssm_params.yml'});
-		return env.getEnvironmentParametersAsPrompts()
+		return env.loadEnvironmentParametersAsPrompts()
 			.then((prompts) => {
 				prompts.should.exist;
 				prompts.length.should.be.eql(4);

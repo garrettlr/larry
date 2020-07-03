@@ -2,7 +2,8 @@ module.exports = {
 	"plugins": [
 	],
 	"parserOptions": {
-		"sourceType": "module"
+		"sourceType": "module",
+		"ecmaVersion": 2017
 	},
 	"env": {
 		"es6": true,
