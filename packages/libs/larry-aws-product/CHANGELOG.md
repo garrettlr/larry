@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.4.1...@monstermakes/larry-aws-product@0.5.0) (2020-07-03)
+
+
+### Features
+
+* **aws-product:** add sso support ([a340078](https://github.com/@lockenj/larry-aws-product/commit/a34007848d632f1989d714faa6f8499534fd70f6))
+
+
+
+
+
 ## [0.4.1](https://github.com/@lockenj/larry-aws-product/compare/@monstermakes/larry-aws-product@0.4.0...@monstermakes/larry-aws-product@0.4.1) (2020-06-19)
 
 
