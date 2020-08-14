@@ -256,7 +256,7 @@ class AwsEnvironment extends Environment{
 	/* START LIFECYCLE METHODS */
 	/*********************************************************/
 	async shutdown(){
-		this.clearState();
+		this._clearState();
 		this._isLoaded = false;
 	}
 	async startup(){

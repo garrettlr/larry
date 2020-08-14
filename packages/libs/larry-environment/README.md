@@ -11,6 +11,18 @@ Represents the tooling and libraries needed to deploy and maintain a cloud based
 TODO
 Talk to the fact that there is an AWS version only at this point
 
+
+### Aws Environment Developer Notes
+
+If you are locally testing you can customize the cli by setting these ENV variables:
+
+- AWS_SSO_START_URL 
+	- This is the aws sso start url (https://<ACCT_SPECIFIC_INFO_HERE>.awsapps.com/start#/)
+- AWS_PROFILE
+	- The name of the AWS_PROFILE to use (<ACCT_NAME>__<ROLE_NAME>)
+- ENVIRONMENT_CLOUDFORMATION_DIR
+	- The local path to the cloudformation templates that represent this AWS environment
+
 ## AWS Environment TODOs
 1. Add support for Parameters with `AllowedPattern`
 	- Currently the AllowedPattern does not come in the response from the getTemplateSummary call

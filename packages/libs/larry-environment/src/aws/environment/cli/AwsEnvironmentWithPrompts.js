@@ -5,7 +5,6 @@ const AwsEnvironment = require('../AwsEnvironment');
 const LarryEnvironmentIndex = require('../../../../index');
 const ENVIRONMENT_NAME_PROMPT = require('./EnvironmentName.prompt');
 const CLOUD_FORMATION_DIR_PROMPT = require('./CloudFormationDir.prompt');
-const pathUtils = require('path');
 
 class AwsEnvironmentWithPrompts extends AwsEnvironment{
 	constructor(prompter, logger, environmentName, cloudFormationDir, profileName, opts){
@@ -282,7 +281,7 @@ class AwsEnvironmentWithPrompts extends AwsEnvironment{
 			const selectedTemplateInfo = await this.selectTemplateInfo(_.get(opts,'templateName'));
 
 			//Get the alter prompts
-			const prompts = this._convertParmetersToPromptsWithValues(selectedTemplateInfo.params,this.getEnvironmentParameterValues());
+			const prompts = this._convertParmetersToPromptsWithValues(selectedTemplateInfo.params,selectedTemplateInfo.values);
 			
 			//Update the environment parameter values
 			const templatePromptedValues = await this._prompter.prompt(prompts);
