@@ -1,5 +1,6 @@
 module.exports.cliActions = {
 	scaffolds: {
+		MonoRepoProject: require('./src/cli-actions/scaffolds/mono-repo-project/MonoRepoProject.cli-action'),
 		GitNodeProject: require('./src/cli-actions/scaffolds/git-node-project/NodeProject.cli-action'),
 		WebAppProject: require('./src/cli-actions/scaffolds/web-app-project/WebApp.cli-action'),
 		AngularAppProject: require('./src/cli-actions/scaffolds/angular-app-project/AngularApp.cli-action'),
