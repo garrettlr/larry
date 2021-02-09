@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/MonsterMakes/larry-scaffolds/compare/@monstermakes/larry-scaffolds@1.7.1...@monstermakes/larry-scaffolds@1.8.0) (2021-02-09)
+
+
+### Bug Fixes
+
+* **scaffolds:** adjust node-git scaffold ([0ed85c8](https://github.com/MonsterMakes/larry-scaffolds/commit/0ed85c8e598d3089f78850d4a9f7fc418161bb85))
+
+
+### Features
+
+* **scaffolds:** add mono repo scaffold ([63bcedc](https://github.com/MonsterMakes/larry-scaffolds/commit/63bcedc3f884b59b2f1f9692d81892ff8e2c8680))
+
+
+
+
+
 ## [1.7.1](https://github.com/MonsterMakes/larry-scaffolds/compare/@monstermakes/larry-scaffolds@1.7.0...@monstermakes/larry-scaffolds@1.7.1) (2020-06-19)
 
 **Note:** Version bump only for package @monstermakes/larry-scaffolds
