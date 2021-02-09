@@ -12,19 +12,11 @@
 	},
 	"license": "MIT",
 	"scripts": {
-		"pipeline": "./ci/build-pipeline.sh",
-		"add-package": "lerna create",
-		"link-package": "lerna add"
+		"clean-slate": "echo 'Remove all the node_modules' && lerna clean  --yes && rm -rf node_modules",
+		"setup-project": "npm install && lerna bootstrap --hoist --force-local"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"json": "^9.0.6",
-		"lerna": "^3.20.2",
-		"semver": "^7.3.2"
-	},
-	"workspaces": {
-		"packages": [
-			"packages/*"
-		]
+		"lerna": "^3.20.2"
 	}
 }

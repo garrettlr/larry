@@ -1,14 +1,12 @@
 {
   "packages": [
-    "packages/*"
+    "packages/**"
   ],
   "command": {
     "version": {
-      "allowBranch": ["alpha-*","rc-*","master"],
       "conventionalCommits": true
     }
   },
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "npmClient": "npm",
   "version": "independent"
 }

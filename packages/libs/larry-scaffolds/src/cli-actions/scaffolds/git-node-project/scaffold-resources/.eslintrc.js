@@ -12,6 +12,8 @@ module.exports = {
 	"extends": "eslint:recommended",
 	"rules": {
 		"no-console": ["error"],
+		"no-prototype-builtins": "off",
+		"no-unused-vars": ["error", { "args": "none" }],
 		"indent": [
 			"warn",
 			"tab"
