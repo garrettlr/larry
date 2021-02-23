@@ -1,9 +1,11 @@
 module.exports = {
 	"plugins": [
-		"cypress"
 	],
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2020
+	},
 	"env": {
-		"cypress/globals": true,
 		"es6": true,
 		"node": true,
 		"mocha": true
@@ -11,6 +13,8 @@ module.exports = {
 	"extends": "eslint:recommended",
 	"rules": {
 		"no-console": ["error"],
+		"no-prototype-builtins": "off",
+		"no-unused-vars": ["error", { "args": "none" }],
 		"indent": [
 			"warn",
 			"tab"

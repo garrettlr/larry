@@ -85,7 +85,7 @@ describe(TEST_NAME, () => {
 			});
 			
 	});
-	it.only('should bump the desired Task Count',()=>{
+	it('should bump the desired Task Count',()=>{
 		let containerVersions = {};
 		containerVersions[CONTAINER_NAME] = CONTAINER_VERSION;
 		return Promise.resolve()

@@ -10,8 +10,8 @@
  },
  "license": "MIT",
  "scripts": {
-  "lint-fix": "echo '=> Fixing Linting errors...' && eslint {src,cypress,test}/**/*.js --fix",
-  "lint": "echo '=> Linting' && eslint **/*.js",
+  "lint-fix": "echo '=> Fixing Linting errors...' && eslint {src,test}/**/*.js --fix",
+  "lint": "echo '=> Linting' && eslint {src,test}/**/*.js",
   "test": "echo '=> Running Tests' && mocha -u tdd --timeout 60000 --colors test/**/*.spec.js",
   "test-coverage": "echo '=> Running Tests w/ Coverage' && nyc mocha test/**/*.spec.js",
   "test-coverage:http": "echo '=> Running Tests w/ Coverage' && nyc --reporter=html mocha test/**/*.spec.js",
@@ -27,7 +27,7 @@
   "chai": "^4.1.2",
   "chai-as-promised": "^7.1.1",
   "chai-files": "^1.4.0",
-  "eslint": "^4.17.0",
+  "eslint": "^7.25.0",
   "mocha": "^5.0.0",
   "nyc": "^11.4.1"
  }
