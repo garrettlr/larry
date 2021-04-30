@@ -92,7 +92,7 @@ class AwsCloudFormation {
 	 * For more information see the aws SDK docs https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudFormation.html#deleteStack-property.
 	 * @param {Object} params - An object that defines the cloudformation template to be validated.
 	 * @param {String} params.StackName - The name or the unique stack ID that is associated with the stack, which are not always interchangeable:
-	 * @param {String} params.RetainResources - For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, AWS CloudFormation deletes the stack but does not delete the retained resources. Retaining resources is useful when you cannot delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.
+	 * @param {Array.<String>} params.RetainResources - For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, AWS CloudFormation deletes the stack but does not delete the retained resources. Retaining resources is useful when you cannot delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.
 	 */
 	deleteStack(params={}){
 		return this._awsCloudFormationSdk.deleteStack(params).promise();

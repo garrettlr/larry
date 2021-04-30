@@ -25,7 +25,8 @@ class AwsEnvironmentCliModule extends CliModule {
 		this._initLoadEnvironmentCommand();
 		this._initPrintEnvironmentDetails();
 		this._initAlterEnvironmentValuesAction();
-		this._initDeployAction();
+		this._initDeployTemplateAction();
+		this._initDestroyStackAction();
 	}
 	_initLoadEnvironmentCommand(){
 		this._vorpalInstance
@@ -65,12 +66,28 @@ class AwsEnvironmentCliModule extends CliModule {
 				}
 			});
 	}
-	_initDeployAction(){
+	_initDeployTemplateAction(){
 		this._vorpalInstance
 			.command('deploy-template', 'Deploy an environment template.')
 			.action(async (args, callback) => {
 				try{
 					await this._environment.deployTemplateAction();
+					callback();
+				}
+				catch(e){
+					callback(e);
+				}
+			});
+	}
+	_initDestroyStackAction(){
+		this._vorpalInstance
+			.command('destroy-stack', 'Destroy an environment stack.')
+			.option('-k, --keep <resourceId>', 'Resource ID to be retained.')
+			.action(async (args, callback) => {
+				try{
+					await this._environment.destroyStackAction({
+						resourceIdsToRetain: args.keep
+					});
 					callback();
 				}
 				catch(e){

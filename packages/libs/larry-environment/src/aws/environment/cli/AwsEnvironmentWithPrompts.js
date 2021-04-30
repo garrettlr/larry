@@ -275,6 +275,21 @@ class AwsEnvironmentWithPrompts extends AwsEnvironment{
 			this._logger.log('*********************************************************************');
 		}
 	}
+	async destroyStackAction(opts={templateName: undefined,resourceIdsToRetain:[]}){
+		if(this.isLoaded()){
+			const selectedTemplateInfo = await this.selectTemplateInfo(_.get(opts,'templateName'));
+
+			this._logger.log(`Destroying stack ${selectedTemplateInfo.stackName}...`);
+			return await this.destroyStack(selectedTemplateInfo.stackName,{
+				resourceIdsToRetain: _.get(opts,'resourceIdsToRetain')
+			});
+		}
+		else{
+			this._logger.log('*********************************************************************');
+			this._logger.log('Environment is NOT Loaded, skipping destroy...');
+			this._logger.log('*********************************************************************');
+		}
+	}
 	async alterParameterValues(opts={templateName: undefined}){
 		if(this.isLoaded()){
 			// choose a template to alter the values
@@ -329,8 +344,8 @@ class AwsEnvironmentWithPrompts extends AwsEnvironment{
 				const templatePathPromptResults = await this._prompter.prompt([{
 					type:'list',
 					name:'templateNamespacedName',
-					message:'Choose the template you\'d like to deploy => ',
-					description:'The template to deploy.',
+					message:'Choose the template => ',
+					description:'The template the action will be taken on.',
 					choices: templateChoices,
 					validate: (input)=>{
 						let result = true;

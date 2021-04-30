@@ -197,6 +197,18 @@ class AwsEnvironment extends Environment{
 			throw new Error(`Environment is not currently loaded, cannot deploy template ${namespacedName}...`);
 		}
 	}
+	async destroyStack(namespacedName,opts={resourceIdsToRetain:[]}){
+		if(this.isLoaded()){
+			const results = await this._cloudFormation.teardownStack(
+				namespacedName,
+				opts
+			);
+			return results;
+		}
+		else{
+			throw new Error(`Environment is not currently loaded, cannot destroy stack ${namespacedName}...`);
+		}
+	}
 	/*********************************************************/
 	/* END ENVIRONMENT ACTIONS */
 	/* START AWS STATE GETTER METHODS */
@@ -219,15 +231,26 @@ class AwsEnvironment extends Environment{
 	/* END AWS STATE GETTER METHODS */
 	/* START MISC HELPER METHODS */
 	/*********************************************************/
+	_stripExtensionFromTemplatePath(templatePath){
+		let pathToTemplateNoExtension = templatePath;
+		if(templatePath.endsWith('.yml') || templatePath.endsWith('.yaml')){
+			pathToTemplateNoExtension = templatePath.split('.').slice(0, -1).join('.');
+		}
+		return pathToTemplateNoExtension;
+	}
 	_getNamespacedCloudFormationTemplateName(templatePath){
-		let pathToTemplateNoExtension = templatePath.split('.').slice(0, -1).join('.');
+		let pathToTemplateNoExtension = this._stripExtensionFromTemplatePath(templatePath);
 		let packageNamespacedName = pathToTemplateNoExtension.replace(new RegExp(/\./,'g'),'-');
 		packageNamespacedName = pathToTemplateNoExtension.replace(new RegExp(pathUtils.sep,'g'),'.');
 		packageNamespacedName = packageNamespacedName.replace(/^-/,'');
 		return `env.${this.getEnvironmentName()}.${packageNamespacedName}`;
 	}
+	_getTemplatePathFromNamespace(namespacedName){
+		let cfTemplatePath = namespacedName.replace(new RegExp(/\./,'g'),'/');
+		return cfTemplatePath;
+	}
 	_getNamespacedStackName(templatePath){
-		let pathToTemplateNoExtension = templatePath.split('.').slice(0, -1).join('.');
+		let pathToTemplateNoExtension = this._stripExtensionFromTemplatePath(templatePath);
 		let kebabCaseNamespaced = pathToTemplateNoExtension.replace(new RegExp(pathUtils.sep,'g'),'-');
 		kebabCaseNamespaced = kebabCaseNamespaced.replace(/^-/,'');
 		return `env-${this.getEnvironmentName()}-${kebabCaseNamespaced}`;

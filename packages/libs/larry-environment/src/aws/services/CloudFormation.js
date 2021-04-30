@@ -208,11 +208,12 @@ class CloudFormation extends AwsCloudFormation {
 				});
 			});
 	}
-	teardownStack(nameOrId){
+	teardownStack(nameOrId,opts={resourceIdsToRetain:[]}){
 		return Promise.resolve()
 			.then(()=>{
 				return this.deleteStack({
-					StackName: nameOrId
+					StackName: nameOrId,
+					RetainResources: opts.resourceIdsToRetain
 				});
 			})
 			.then((deleteResponse)=>{
@@ -236,8 +237,18 @@ class CloudFormation extends AwsCloudFormation {
 						
 					})
 					.catch(e=>{
-						//TODO if the stack is no longer visible it is obviously is deleted
-						Promise.reject(e);
+						//if the stack is no longer visible it is obviously is deleted
+						if(e.code === 'ValidationError' && e.message.match(/Stack with id .* does not exist/)){
+							return Promise.resolve({
+								deleteResponse: {},
+								lastUpdatedStatus: {
+									StackStatus: 'DELETE_COMPLETE'
+								}
+							});
+						}
+						else{
+							Promise.reject(e);
+						}
 					});
 			})
 			.then((createResults)=>{
