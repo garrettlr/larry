@@ -2,8 +2,7 @@ module.exports = {
 	"plugins": [
 	],
 	"parserOptions": {
-		"sourceType": "module",
-		"ecmaVersion": 2020
+		"sourceType": "module"
 	},
 	"env": {
 		"es6": true,
@@ -13,8 +12,6 @@ module.exports = {
 	"extends": "eslint:recommended",
 	"rules": {
 		"no-console": ["error"],
-		"no-prototype-builtins": "off",
-		"no-unused-vars": ["error", { "args": "none" }],
 		"indent": [
 			"warn",
 			"tab"
@@ -25,8 +22,7 @@ module.exports = {
 		],
 		"quotes": [
 			"warn",
-			"single", 
-			{ "allowTemplateLiterals": true }
+			"single"
 		],
 		"semi": [
 			"error",

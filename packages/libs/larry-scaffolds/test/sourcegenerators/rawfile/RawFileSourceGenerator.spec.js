@@ -1,6 +1,6 @@
 'use strict';
 const chai = require('chai');
-const should = chai.should();//eslint-disable-line
+const should = chai.should();
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 

@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.8.1](https://github.com/MonsterMakes/larry-scaffolds/compare/@monstermakes/larry-scaffolds@1.8.0...@monstermakes/larry-scaffolds@1.8.1) (2021-04-29)
-
-
-### Bug Fixes
-
-* make eslint rules consistent ([790add5](https://github.com/MonsterMakes/larry-scaffolds/commit/790add52dfa7e8e7f95a5a846fcbac6eb1867273))
-
-
-
-
-
 # [1.8.0](https://github.com/MonsterMakes/larry-scaffolds/compare/@monstermakes/larry-scaffolds@1.7.1...@monstermakes/larry-scaffolds@1.8.0) (2021-02-09)
 
 

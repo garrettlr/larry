@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.3](https://github.com/monstermakes/larry-infrastructure/compare/@monstermakes/larry-infrastructure@0.3.2...@monstermakes/larry-infrastructure@0.3.3) (2021-04-29)
-
-
-### Bug Fixes
-
-* make eslint rules consistent ([790add5](https://github.com/monstermakes/larry-infrastructure/commit/790add52dfa7e8e7f95a5a846fcbac6eb1867273))
-
-
-
-
-
 ## [0.3.2](https://github.com/monstermakes/larry-infrastructure/compare/@monstermakes/larry-infrastructure@0.3.1...@monstermakes/larry-infrastructure@0.3.2) (2021-02-09)
 
 **Note:** Version bump only for package @monstermakes/larry-infrastructure

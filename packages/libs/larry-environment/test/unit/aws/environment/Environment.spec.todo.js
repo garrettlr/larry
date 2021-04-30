@@ -1,7 +1,7 @@
 'use strict';
 const chai = require('chai');
-const should = chai.should();//eslint-disable-line
-const expect = chai.expect;//eslint-disable-line
+const should = chai.should(); // eslint-disable-line 
+const expect = chai.expect; // eslint-disable-line 
 
 const TEST_NAME = 'Environment spec';
 const CLOUD_FORMATION_DIR = __dirname + '/mocks';

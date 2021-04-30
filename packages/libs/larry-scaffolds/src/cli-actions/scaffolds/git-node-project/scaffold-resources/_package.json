@@ -25,7 +25,7 @@
 		"clean": "echo '=> Cleaning built assets...' && rm -rf .nyc_output coverage",
 		"lint": "echo '=> Linting...' && eslint src/**/*.js",
 		"lint-fix": "echo '=> Fixing Linting errors...' && eslint src/**/*.js --fix",
-		"test-unit-file": "echo '=> Running individual Test...' && mocha --timeout 60000 --colors --inspect --debug-brk",
+		"test-unit-file": "echo '=> Running individual Test...' && mocha --timeout 60000 --colors",
 		"test-unit": "echo '=> Running Tests...' && npm run test-unit-file 'test/unit/**/*.spec.js'",
 		"watch-test-unit-file": "echo '=> Running Test Watcher for individual test...' && npm run test-unit-file -- --watch",
 		"watch-test-unit": "echo '=> Running Test Watcher...' && npm run watch-test-unit-file 'test/unit/**/*.spec.js'",

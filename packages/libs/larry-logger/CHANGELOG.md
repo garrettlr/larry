@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.1](https://github.com/monstermakes/larry-logger/compare/@monstermakes/larry-logger@0.1.0...@monstermakes/larry-logger@0.1.1) (2021-04-29)
-
-
-### Bug Fixes
-
-* make eslint rules consistent ([790add5](https://github.com/monstermakes/larry-logger/commit/790add52dfa7e8e7f95a5a846fcbac6eb1867273))
-
-
-
-
-
 # [0.1.0](https://github.com/monstermakes/larry-logger/compare/@monstermakes/larry-logger@0.0.6...@monstermakes/larry-logger@0.1.0) (2020-04-14)
 
 

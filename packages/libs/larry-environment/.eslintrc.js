@@ -3,7 +3,7 @@ module.exports = {
 	],
 	"parserOptions": {
 		"sourceType": "module",
-		"ecmaVersion": 2020
+		"ecmaVersion": 2017
 	},
 	"env": {
 		"es6": true,
@@ -13,8 +13,6 @@ module.exports = {
 	"extends": "eslint:recommended",
 	"rules": {
 		"no-console": ["error"],
-		"no-prototype-builtins": "off",
-		"no-unused-vars": ["error", { "args": "none" }],
 		"indent": [
 			"warn",
 			"tab"
@@ -25,8 +23,7 @@ module.exports = {
 		],
 		"quotes": [
 			"warn",
-			"single", 
-			{ "allowTemplateLiterals": true }
+			"single"
 		],
 		"semi": [
 			"error",
@@ -34,3 +31,26 @@ module.exports = {
 		]
 	}
 };
+
+// module.exports = {
+//     "env": {
+//         "commonjs": true,
+//         "es6": true,
+//         "node": true
+//     },
+//     "extends": [
+//         "eslint:recommended",
+//         "airbnb-base"
+//     ],
+//     "globals": {
+//         "Atomics": "readonly",
+//         "SharedArrayBuffer": "readonly"
+//     },
+//     "parserOptions": {
+//         "ecmaVersion": 2018
+//     },
+//     "rules": {
+//         "indent": ["error", 4],
+//         "max-classes-per-file": ["error", 3]
+//     }
+// };

@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-environment",
 	"description": "Tooling to build and maintaing larry cloud applications.",
-	"version": "0.0.3",
+	"version": "0.0.2",
 	"publishConfig": {},
 	"bin": {
 		"larry-environment-cli": "./bin/larry-environment.cli.js"
@@ -32,19 +32,19 @@
 		"test-unit-coverage": "echo '=> Running Tests w/ Coverage...' && nyc npm run test-unit && nyc --reporter=html report && nyc --lines 0 --functions 0 --branches 0 --per-file check-coverage"
 	},
 	"dependencies": {
-		"@monstermakes/larry-cli": "^0.3.2",
+		"@monstermakes/larry-cli": "^0.3.1",
 		"aws-sdk": "^2.709.0",
-		"glob": "^7.1.6",
 		"ini": "^1.3.5",
 		"lodash": "^4.17.11",
+		"node-glob": "^1.2.0",
 		"open": "^7.0.4"
 	},
 	"devDependencies": {
-		"@monstermakes/larry-infrastructure": "^0.3.3",
+		"@monstermakes/larry-infrastructure": "^0.3.2",
 		"chai": "^4.2.0",
 		"chai-as-promised": "^7.1.1",
 		"chai-files": "^1.4.0",
-		"eslint": "^7.25.0",
+		"eslint": "^4.17.0",
 		"mocha": "^5.2.0",
 		"nyc": "^11.4.1"
 	}

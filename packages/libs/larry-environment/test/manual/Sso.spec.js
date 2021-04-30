@@ -58,7 +58,7 @@ describe(TEST_NAME, () => {
 				expect(roles).to.exist;
 			});
 	});
-	it('should retrieve all accounts and roles', ()=>{
+	it.only('should retrieve all accounts and roles', ()=>{
 		const sso = new Sso(SSO_REGION, SSO_START_URL);
 		return sso.retrieveAllAccountsAndRoles()
 			.then((accountsAndRoles)=>{

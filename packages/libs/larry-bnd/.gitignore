@@ -1,0 +1,13 @@
+.vscode/**
+.history
+node_modules/
+_WORKING_DIRECTORY
+build/
+cypress/videos
+.nyc_output
+.cache
+.DS_Store
+coverage
+dist/
+npm-debug.log
+!*/launch-template.json

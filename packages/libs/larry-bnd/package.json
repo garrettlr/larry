@@ -1,0 +1,54 @@
+{
+	"name": "@monstermakes/larry-bnd",
+	"description": "Build and Deploy of mono repo projects. ",
+	"version": "0.0.1",
+	"publishConfig": {},
+	"bin": {
+		"initialize-project": "./bin/initialize-project.js",
+		"reset-project": "./bin/reset-project.js"
+	},
+	"files": [
+		"bin",
+		"src",
+		"CHANGELOG.md",
+		"index.js",
+		"README.md",
+		"!.DS_Store"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/monstermakes/larry-bnd"
+	},
+	"license": "MIT",
+	"scripts": {
+		"start": "echo '=> This is a library project and therefore has no server component. Exiting...' && exit 0",
+		"test": "echo '=> Verifying...' && npm run clean && npm run lint && npm run test-unit-check-coverage",
+		"readiness-check": "echo '=> Checking Readiness' && npm test",
+		"prepublishOnly": "npm test",
+		"clean": "echo '=> Cleaning built assets...' && rm -rf .nyc_output coverage",
+		"lint": "echo '=> Linting...' && eslint src/**/*.js",
+		"lint-fix": "echo '=> Fixing Linting errors...' && eslint src/**/*.js --fix",
+		"test-unit-file": "echo '=> Running individual Test...' && mocha --timeout 60000 --colors",
+		"test-unit": "echo '=> Running Tests...' && npm run test-unit-file 'test/unit/**/*.spec.js'",
+		"watch-test-unit-file": "echo '=> Running Test Watcher for individual test...' && npm run test-unit-file -- --watch",
+		"watch-test-unit": "echo '=> Running Test Watcher...' && npm run watch-test-unit-file 'test/unit/**/*.spec.js'",
+		"test-unit-report-coverage": "echo '=> Running Tests w/ Coverage...' && nyc --all --include 'src' --exclude '.history' npm run test-unit && nyc --reporter=html report",
+		"test-unit-check-coverage": "echo '=> Running Tests w/ Coverage...' && npm run test-unit-report-coverage && nyc check-coverage --lines 100 --functions 100 --branches 100 --satements 100 --per-file",
+		"view-code-coverage": "echo '=> Launching code coverage results in browser...' && open coverage/index.html"
+	},
+	"dependencies": {
+		"@lerna/list": "^4.0.0",
+		"conventional-commits-parser": "^3.2.1",
+		"faker": "^5.4.0",
+		"nodegit": "^0.27.0"
+	},
+	"devDependencies": {
+		"@monstermakes/larry-infrastructure": "*",
+		"chai": "^4.3.4",
+		"chai-as-promised": "^7.1.1",
+		"chai-files": "^1.4.0",
+		"eslint": "^7.22.0",
+		"mocha": "^8.3.2",
+		"nyc": "^15.1.0"
+	}
+}
