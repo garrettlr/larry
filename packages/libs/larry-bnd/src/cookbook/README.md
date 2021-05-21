@@ -245,7 +245,7 @@ The goals behind this package Hierarchy are:
 - to provide normalcy for developers across projects 
 	- this will eliminate the need to explain/re-explain each time someone enters a new codebase
 
-Larry's Standard Package Hierarchy looks like:
+Larry'sç Standard Package Hierarchy looks like:
 
 - `packages/frontend/**`
 	- All gui application code, including mobile, web, desktop, etc...

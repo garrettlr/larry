@@ -4,5 +4,8 @@ module.exports = {
 	},
 	cookbook: {
 		BnDCookbook: require('./src/cookbook/BnDCookbook')
+	},
+	builder: {
+		Builder: require('./src/builder/Builder')
 	}
 };

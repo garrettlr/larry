@@ -357,6 +357,23 @@ describe(TEST_NAME, async function () {
             isTipOf: ['hot','master']
         });
     });
+    it.only('._retrieveCommitDiffDetails() should retrieve diff details for a commit', async function () {
+        const testDir = await testUtils.createUniqueTestDir();
+        const repository = await Git.init(testDir);
+        const commits = [];
+
+        const commitStr='fix: commit 1\n\nthis is the body portion of the commit message.';
+        await FileWriter.appendFiles({
+            'file1.txt': commitStr,
+            'file2.txt': commitStr,
+            'nested/folder2/file3.txt': commitStr,
+        }, testDir);
+        const commitId = await Git.commitAll(testDir,commitStr);
+        const commit = await repository.getCommit(commitId);
+        commits.push(commit);
+
+        const diffDetails = await Git._retrieveCommitDiffDetails(testDir,commitId);
+    });
     /********************************************/
     /* END TESTING PRIVATE METHODS */
     /* METHODS TO BE TESTED DIRECTLY */

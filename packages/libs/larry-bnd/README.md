@@ -43,7 +43,7 @@ It provides deployment tooling for products to describe how they must be deploye
     - Incorporate finished work with ongoing work
         - in cases like hotpatch scenarios would be nice to have a tool that merges this back out to ongoing work.
 - CI includes
-    - build and release pipeline
+    - build and release phases
         - build
             - steps required before executing developer tests
         - developer test
@@ -54,6 +54,48 @@ It provides deployment tooling for products to describe how they must be deploye
             - this would be a mono repo wide test suite
         - release
             - this is where artifacts are actually published
+    - Actions within a phase are specified by
+        1. hook scripts
+            - specific package
+            - or package hierarchy
+        2. standard package types
+            - based on package hierarchy
+            - These will execute npm scripts
+        3. Default npm scripts
+            - npm test
+            - npm publish
+    - support multiple Branching Strategies
+        - Supported Types
+            - feature
+                - https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
+                - branch types
+                    - Feature branches
+                        - build
+                        - developer test
+                        - package*
+                        - release* 
+                            - pre release (based on branch name)
+                    - master / release branch
+                        - build 
+                        - developer test
+                        - package
+                        - release
+            - gitflow
+                - https://nvie.com/posts/a-successful-git-branching-model/
+                - branch types
+                    - master
+                        - product version tracking
+                    - develop branch
+                        - long runnning branch to incorporate development efforts
+                        - This is basically a never ending integration branch
+                    - Feature branches
+                        - houses developer work (topic based)
+                        - comes out of development and back into devlopment
+                    - Release Branches
+                    - Hotfix Branches
+            - product
+                - See SCM Cookbook
+        - Different Actions
     - Should CLEARLY display 
         - what packages have changed
             - including before and after versions

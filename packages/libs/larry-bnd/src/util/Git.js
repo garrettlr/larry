@@ -106,6 +106,15 @@ class Git {
 		const mappedCommits = await Git._getCommitDetailsList(repo,commits);
 		return mappedCommits;
 	}
+	static async getChangesSince(repoRef, commitRef) {
+		return Git.getChangesBetween(repoRef,commitRef, 'HEAD');
+	}
+	static async getChangesBetween(repoRef, startCommitRef, endCommitRef) {
+		const repo = await Git._getRepoFromRepoRef(repoRef);
+		const startCommit = await Git._getCommitFromCommitRef(repo, commitRef);
+		const endCommit = await Git._getCommitFromCommitRef(repo, commitRef);
+		return await Git.history(`${startCommitRef.sha()}..${endCommitRef.sha()}`);
+	}
 	static async getCommitDetails(repoRef, commitRef) {
 		const repo = await Git._getRepoFromRepoRef(repoRef);
 		const commitParentAndTypeDetails = await Git._retrieveParentAndTypeInfoForCommit(repo, commitRef);
@@ -287,9 +296,10 @@ class Git {
 	/*******************************************************************************/
 	/* START PRIVATE METHODS */
 	/*******************************************************************************/
-	static async _retrieveBranchInfoForCommit(repo, commitRef) {
-		const commitSha = await Git._getCommitShaFromCommitRef(repo, commitRef);
-		const branchNames = await Git.getBranchNames(repo);
+	static async _retrieveBranchInfoForCommit(repoRef, commitRef) {
+		const repo = await Git._getRepoFromRepoRef(repoRef);
+		const commitSha = await Git._getCommitShaFromCommitRef(commitRef);
+		const branchNames = await Git.getBranchNames(repoRef);
 		const branchInfo = {
 			includedIn: [],
 			isTipOf: []
@@ -311,8 +321,126 @@ class Git {
 		}
 		return branchInfo;
 	}
-	static async _retrieveParentAndTypeInfoForCommit(repo, commitRef) {
-		const commit = await Git._getCommitFromCommitRef(repo, commitRef);
+	static async _retrieveCommitDiffDetails(repoRef, commitRef) {
+		const commit = await Git._getCommitFromCommitRef(repoRef, commitRef);
+		const parents = commit.parents()
+		const diffList = await commit.getDiff();
+		const diffDetails = {};
+//TODO handle Merge Commit
+//TODO handle octupus Merge
+
+		//In the case
+		const diff = diffList[0];
+
+		//Stats
+		const diffStats = await diff.getStats();
+		const deletions = diffStats.deletions();
+		const filesChanged = diffStats.filesChanged();
+		const insertions = diffStats.insertions();
+		
+		//Deltas
+		const numOfDeltas = diff.numDeltas();
+		const diffDeltas = [];
+		const diffDeltasDetails = [];
+		for (let idx = 0; idx<numOfDeltas; idx++){
+			const diffDelta = diff.getDelta(idx);
+			const flags = diffDelta.flags();
+			const nfiles = diffDelta.nfiles();
+			const similarity = diffDelta.similarity();
+			const status = diffDelta.status();
+			
+			const newDiffFile = diffDelta.newFile();
+			const newDiffFileFlags = newDiffFile.flags();
+			const newDiffFileId = newDiffFile.id();
+			const newDiffFileMode = newDiffFile.mode();
+			const newDiffFilePath = newDiffFile.path();
+			const newDiffFileSize = newDiffFile.size();
+			
+			const oldDiffFile = diffDelta.oldFile();
+			const oldDiffFileFlags = oldDiffFile.flags();
+			const oldDiffFileId = oldDiffFile.id();
+			const oldDiffFileMode = oldDiffFile.mode();
+			const oldDiffFilePath = oldDiffFile.path();
+			const oldDiffFileSize = oldDiffFile.size();
+
+			diffDeltas.push(diffDelta);
+			diffDeltasDetails.push({
+				flags,
+				nfiles,
+				similarity,
+				status,
+				newDiffFile,
+				newDiffFileDtails: {
+					flags: newDiffFileFlags,
+					id: newDiffFileId,
+					mode: newDiffFileMode,
+					path: newDiffFilePath,
+					size: newDiffFileSize,
+				},
+				oldDiffFileDetils: {
+					flags: oldDiffFileFlags,
+					id: oldDiffFileId,
+					mode: oldDiffFileMode,
+					path: oldDiffFilePath,
+					size: oldDiffFileSize,
+				}
+			});
+		}
+
+		//Patches
+		const patches = await diff.patches();
+		const patchDetails = [];
+		for (const patch of patches) {
+			const hunks = await patch.hunks();
+			const isAdded = await patch.isAdded();
+			const isConflicted = await patch.isConflicted();
+			const isCopied = await patch.isCopied();
+			const isDeleted = await patch.isDeleted();
+			const isIgnored = await patch.isIgnored();
+			const isModified = await patch.isModified();
+			const isRenamed = await patch.isRenamed();
+			const isTypeChange = await patch.isTypeChange();
+			const isUnmodified = await patch.isUnmodified();
+			const isUnreadable = await patch.isUnreadable();
+			const isUntracked = await patch.isUntracked();
+			const lineStats = await patch.lineStats();
+			const newFile = await patch.newFile();
+			const oldFile = await patch.oldFile();
+			const size = await patch.size();
+			const status = await patch.status();
+			patchDetails.push({
+				hunks,
+				isAdded,
+				isConflicted,
+				isCopied,
+				isDeleted,
+				isIgnored,
+				isModified,
+				isRenamed,
+				isTypeChange,
+				isUnmodified,
+				isUnreadable,
+				isUntracked,
+				lineStats,
+				newFile,
+				oldFile,
+				size,
+				status,
+			});
+		}
+		
+		//Summary
+		const patchFormattedDiff = await diff.toBuf(1);
+		const patchHeaderFormattedDiff = await diff.toBuf(2);
+		const rawFormattedDiff = await diff.toBuf(3);
+		const nameOnlyFormattedDiff = await diff.toBuf(4);
+		const nameStatusFormattedDiff = await diff.toBuf(5);
+
+		
+		return diffDetails;
+	}
+	static async _retrieveParentAndTypeInfoForCommit(repoRef, commitRef) {
+		const commit = await Git._getCommitFromCommitRef(repoRef, commitRef);
 		const diffList = await commit.getDiff();
 		const commitDetails = {};
 		// This is a merge commit
@@ -333,9 +461,9 @@ class Git {
 			}
 
 			const destParent = await repo.getCommit(parents[0]);
-			const destParentBranchInfo = await Git._retrieveBranchInfoForCommit(repo, destParent);
+			const destParentBranchInfo = await Git._retrieveBranchInfoForCommit(repoRef, destParent);
 			const srcParent = await repo.getCommit(parents[1]);
-			const srcParentBranchInfo = await Git._retrieveBranchInfoForCommit(repo, srcParent);
+			const srcParentBranchInfo = await Git._retrieveBranchInfoForCommit(repoRef, srcParent);
 
 			commitDetails.destinationParent = {
 				commit: destParent.tostrS(),
@@ -357,7 +485,7 @@ class Git {
 			const nameStatusFormattedDiff = await diff.toBuf(5);
 			const parent = commit.parents()[0];
 			if(parent !== undefined){
-				const parentBranchInfo = await Git._retrieveBranchInfoForCommit(repo, parent);
+				const parentBranchInfo = await Git._retrieveBranchInfoForCommit(repoRef, parent);
 				commitDetails.parent = {
 					commit: parent.tostrS(),
 					branchInfo: parentBranchInfo,
@@ -371,10 +499,10 @@ class Git {
 		}
 		return commitDetails;
 	}
-	static async _getCommitDetailsList(repo,commits){
+	static async _getCommitDetailsList(repoRef,commits){
 		const mappedCommits = [];
 		for (const commit of commits) {
-			const commitDetails = await Git.getCommitDetails(repo, commit);
+			const commitDetails = await Git.getCommitDetails(repoRef, commit);
 			mappedCommits.push(commitDetails);
 		}
 		return mappedCommits;
@@ -405,7 +533,7 @@ class Git {
 		}
 		return commit;
 	}
-	static async _getCommitShaFromCommitRef(repoRef, commitRef) {
+	static async _getCommitShaFromCommitRef(commitRef) {
 		let commitSha = commitRef;
 		if (commitRef?.constructor?.name === 'Commit') {
 			commitSha = commitRef.sha();

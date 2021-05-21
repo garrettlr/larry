@@ -40,6 +40,7 @@
 		"@lerna/list": "^4.0.0",
 		"conventional-commits-parser": "^3.2.1",
 		"faker": "^5.4.0",
+		"glob": "^7.1.7",
 		"nodegit": "^0.27.0"
 	},
 	"devDependencies": {

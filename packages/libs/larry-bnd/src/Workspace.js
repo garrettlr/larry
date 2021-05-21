@@ -1,10 +1,9 @@
 'use strict';
 
-const fs = require('fs').promises;
 const pathUtils = require('path');
 const FileWriter = require('./util/FileWriter');
 const Util = require('./util/Util');
-const ListCommand = require('@lerna/list').ListCommand;
+const glob = require("glob")
 
 class Workspace {
     static get DEFAULT_LERNA_JSON() {
@@ -36,26 +35,73 @@ class Workspace {
         return packageDeets;
     }
 
-    static async listPackages(repoDir = process.cwd()) {
-        try {
-            await fs.stat(pathUtils.resolve(repoDir, 'lerna.json')); // This is required because ListCommand will crawl up until it finds a lerna.json file
-            const listCommand = new ListCommand({ _: [], cwd: repoDir, all: true, json: true, loglevel: 'silent' });
-            await listCommand.runner;
+    /**
+     * What would we want to ask here...
+     * what has changed since (sha, branchname, product version)
+     */
+    static async whatsChanged(repoDir = process.cwd()) {
+    }
 
-            return listCommand.packageGraph.rawPackageList.map((pkg=>{
-                return {
-                    name: pkg.name,
-                    version: pkg.version,
-                    private: pkg.private,
-                    monoRepoLocation: pathUtils.resolve(pkg.rootPath),
-                    packageLocation: pathUtils.relative(repoDir,pkg.location),
-                    dependencies: pkg.dependencies
-                };
+    static async listPackages(repoDir = process.cwd()) {
+        const workspaceGlobs = [];
+        try {
+            const lernaJson = require(pathUtils.resolve(repoDir, 'lerna.json'));
+            if(!Util.isType(lernaJson.packages,'array')){
+                throw new Error('Malformed lernaJson .packages property.');
+            }
+            workspaceGlobs.push(...lernaJson.packages);
+        }
+        catch(le) {
+            //lerna is NOT in use or is NOT configured properly, assume NOT in use
+            try {
+                const pkgJson = require(pathUtils.resolve(repoDir, 'package.json'));
+                workspaceGlobs.push(...pkgJson.workspaces);
+            }
+            catch(pe) {
+                //lerna is NOT in use or is NOT configured properly, assume NOT in use
+                const listError = new Error(`Workspace is not configured properly. No (${pathUtils.resolve(repoDir, 'lerna.json')}) or 'workspaces' property in (${pathUtils.resolve(repoDir, 'package.json')})`)
+                //Compatible error with Lerna
+                listError.code = 'ENOENT';
+                listError.prefix = 'ENOPKG';
+                throw listError;
+            }
+        }
+        const packageJsonGlobs = [];
+        for(const packageGlob of workspaceGlobs){
+            packageJsonGlobs.push(pathUtils.join(packageGlob,'package.json'));
+        }
+        const packageDirs = [];
+        for(const globPattern of packageJsonGlobs){
+            await (new Promise((resolve,reject)=>{
+                glob(
+                    globPattern, 
+                    {
+                        cwd: repoDir,
+                        absolute: false
+                    }, 
+                    (err, files) => {
+                        if(err !== null){
+                            reject(err);
+                        }
+                        else{
+                            for(const file of files){
+                                const foundPkgJson = require(pathUtils.resolve(repoDir, file));
+                                packageDirs.push({
+                                    dependencies: foundPkgJson.dependencies,
+                                    monoRepoLocation: pathUtils.resolve(repoDir),
+                                    name: foundPkgJson.name,
+                                    packageLocation: pathUtils.dirname(file),
+                                    private: foundPkgJson.private,
+                                    version: foundPkgJson.version
+                                });
+                            };
+                            resolve();
+                        }
+                    }
+                );
             }));
         }
-        catch (e) {
-            throw e;
-        }
+        return packageDirs;
     }
 
     static async isMonoRepo(repoDir = process.cwd()) {
