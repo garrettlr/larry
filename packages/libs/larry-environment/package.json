@@ -1,7 +1,7 @@
 {
 	"name": "@monstermakes/larry-environment",
 	"description": "Tooling to build and maintaing larry cloud applications.",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publishConfig": {},
 	"bin": {
 		"larry-environment-cli": "./bin/larry-environment.cli.js"

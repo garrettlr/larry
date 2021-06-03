@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/@lockenj/larry/compare/@monstermakes/larry-environment@0.0.3...@monstermakes/larry-environment@0.0.4) (2021-06-03)
+
+
+### Bug Fixes
+
+* **environment:** update aws-sdk ([b3d1dce](https://github.com/@lockenj/larry/commit/b3d1dce256692aebb0affc7db9c6b8ec30dc5aa4))
+
+
+
+
+
 ## [0.0.3](https://github.com/@lockenj/larry/compare/@monstermakes/larry-environment@0.0.2...@monstermakes/larry-environment@0.0.3) (2021-04-29)
 
 
