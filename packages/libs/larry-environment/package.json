@@ -33,7 +33,7 @@
 	},
 	"dependencies": {
 		"@monstermakes/larry-cli": "^0.3.2",
-		"aws-sdk": "^2.709.0",
+		"aws-sdk": "2.921.0",
 		"glob": "^7.1.6",
 		"ini": "^1.3.5",
 		"lodash": "^4.17.11",
