@@ -6,8 +6,9 @@ const globalSpace = global;
 const globalSymbols = Object.getOwnPropertySymbols(globalSpace);
 const EventEmitter = require('events');
 const _ = require('lodash');
-
+const makeCredsIfMissing = require('./util/makeCredsIfMissing');
 //***NOTE*** This is required before aws-sdk is "required" to pull the config/credentials from the ~/.aws/credentials & ~/.aws/config files.
+makeCredsIfMissing();
 process.env.AWS_SDK_LOAD_CONFIG=1;
 const AWS = require('aws-sdk');
 
